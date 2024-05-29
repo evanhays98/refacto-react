@@ -10,8 +10,7 @@ interface Props {
   domains?: string[]
 }
 
-const DomainFilter = (props: Props) => {
-  const domains = props?.domains ?? [];
+const DomainFilter = ({ domains = [] }: Props) => {
   const countries: string[] = [];
   const classifications: string[] = [];
   const subClassifications: string[] = [];
@@ -24,6 +23,7 @@ const DomainFilter = (props: Props) => {
 
 
   useEffect(() => {
+    if (!domains?.length) return;
     for(let i = 0; i < domains.length; i++) {
       if (countries.indexOf(domains[i].substring(0,2)) <= 0) {
         countries.push(domains[i].substring(0,2))
