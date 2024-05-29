@@ -14,5 +14,15 @@ describe('components', () => {
 
       expect(await screen.findByText('do')).toBeTruthy();
     });
+    it ('should render complex domains', async () => {
+      render(<DomainFilter domains={['US_OK-WOK', 'EN_OL-WOL']} />);
+
+      expect(screen.findByText('US')).toBeTruthy();
+      expect(screen.findByText('EN')).toBeTruthy();
+      expect(screen.findByText('OK')).toBeTruthy();
+      expect(screen.findByText('OL')).toBeTruthy();
+      expect(screen.findByText('WOK')).toBeTruthy();
+      expect(screen.findByText('WOL')).toBeTruthy();
+    });
   })
 })
