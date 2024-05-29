@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-interface State {
+interface DomainFilterState {
     countries: string[],
     classifications: string[],
     subClassifications: string[]
@@ -8,7 +8,7 @@ interface State {
 
 export const useDomainFilter = (domains: string[] | undefined) => {
 
-    let [state, setState] = useState<State>({
+    let [domainFilterState, setDomainFilterState] = useState<DomainFilterState>({
         countries: [],
         classifications: [],
         subClassifications: []
@@ -28,7 +28,7 @@ export const useDomainFilter = (domains: string[] | undefined) => {
             subClassificationsSet.add(domain.substring(6, 9));
         });
 
-        setState({
+        setDomainFilterState({
             countries: Array.from(countriesSet),
             classifications: Array.from(classificationsSet),
             subClassifications: Array.from(subClassificationsSet)
@@ -36,5 +36,5 @@ export const useDomainFilter = (domains: string[] | undefined) => {
 
     }, [domains]);
 
-    return state;
+    return domainFilterState;
 }
