@@ -10,11 +10,11 @@ import { receiveDomains } from './redux/domains/actions';
 const store = createStore();
 
 store.dispatch(receiveDomains([
-  'US_OK-WOK',
-  'FR_NK-WOL',
-  'FR_OK-NPP',
-  'EN_NK-NRP',
-  'EN_BL-WOL',
+    'US_OK-WOK',
+    'FR_NK-WOL',
+    'FR_OK-NPP',
+    'EN_NK-NRP',
+    'EN_BL-WOL',
 ]))
 
 const root = ReactDOM.createRoot(
@@ -23,8 +23,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <React.StrictMode>
-      <Provider store={store}>
-        <App />
-      </Provider>
+        <Provider store={store}>
+            <App />
+        </Provider>
     </React.StrictMode>
 );
