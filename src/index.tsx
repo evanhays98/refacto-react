@@ -1,10 +1,10 @@
 // This file has to be left untouched
 
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import createStore from './redux/store'
+import createStore from './redux/store';
+import { Provider } from 'react-redux';
 import { receiveDomains } from './redux/domains/actions';
 
 const store = createStore();
@@ -17,7 +17,14 @@ store.dispatch(receiveDomains([
   'EN_BL-WOL',
 ]))
 
-ReactDOM.render(
-  <Provider store={store}><App /></Provider>,
-  document.getElementById('root')
+const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+);
+
+root.render(
+    <React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </React.StrictMode>
 );
