@@ -7,9 +7,6 @@ interface State {
 }
 
 export const useDomainFilter = (domains: string[] | undefined) => {
-    const countries: string[] = [];
-    const classifications: string[] = [];
-    const subClassifications: string[] = [];
 
     let [state, setState] = useState<State>({
         countries: [],
@@ -20,27 +17,23 @@ export const useDomainFilter = (domains: string[] | undefined) => {
 
     useEffect(() => {
         if (!domains?.length) return;
-        for(let i = 0; i < domains.length; i++) {
-            if (countries.indexOf(domains[i].substring(0,2)) <= 0) {
-                countries.push(domains[i].substring(0,2))
-            }
-            classifications.push(domains[i].substring(3,5));
-            let flag = false;
-            for(let j = 0; j < subClassifications.length; j++) {
-                if (subClassifications[j] === domains[i].substring(6)) {
-                    flag = true
-                    break;
-                }
-            }
-            if (!flag) {
-                subClassifications.push(domains[i].substring(6));
-            }
-        }
-        setState({
-            countries: countries,
-            classifications: classifications.filter((e, i, l) => l.indexOf(e) === i),
-            subClassifications: subClassifications
+
+        const countriesSet = new Set<string>();
+        const classificationsSet = new Set<string>();
+        const subClassificationsSet = new Set<string>();
+
+        domains.forEach(domain => {
+            countriesSet.add(domain.substring(0, 2));
+            classificationsSet.add(domain.substring(3, 5));
+            subClassificationsSet.add(domain.substring(6, 9));
         });
+
+        setState({
+            countries: Array.from(countriesSet),
+            classifications: Array.from(classificationsSet),
+            subClassifications: Array.from(subClassificationsSet)
+        })
+
     }, [domains]);
 
     return state;

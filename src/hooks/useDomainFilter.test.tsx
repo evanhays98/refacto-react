@@ -23,7 +23,7 @@ describe('useDomainFilter', () => {
 
         expect(result.current.countries).toEqual(['US', 'FR', 'EN']);
         expect(result.current.classifications).toEqual(['OK', 'NK', 'BL']);
-        expect(result.current.subClassifications).toEqual(['WOK', 'NPP', 'NRP']);
+        expect(result.current.subClassifications).toEqual(['WOK', 'WOL', 'NPP', 'NRP']);
     });
 
     it('should handle duplicate domains correctly', () => {
@@ -44,7 +44,7 @@ describe('useDomainFilter', () => {
 
         expect(result.current.countries).toEqual(['US', 'FR', 'EN']);
         expect(result.current.classifications).toEqual(['OK', 'NK', 'BL']);
-        expect(result.current.subClassifications).toEqual(['WOK', 'NPP', 'NRP']);
+        expect(result.current.subClassifications).toEqual(['WOK', 'WOL', 'NPP', 'NRP']);
         
     });
 });
